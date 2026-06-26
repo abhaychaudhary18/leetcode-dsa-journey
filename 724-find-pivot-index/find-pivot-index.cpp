@@ -1,23 +1,50 @@
 //Time Complexity:  O(n)
 //Space Complexity: O(1)
 
-class Solution{
-    public:
-    int pivotIndex(vector<int>&nums){
-        int rightSum=0;
-        for(int num:nums){
-            rightSum+=num;
+
+// class Solution{
+//     public:
+//     int pivotIndex(vector<int>&nums){
+//         int rightSum=0;
+//         for(int num:nums){
+//             rightSum+=num;
+//         }
+//         int leftSum=0;
+//         for(int i=0;i<nums.size();i++){
+//             rightSum -=nums[i];
+//             if(leftSum==rightSum){
+//                 return i;
+//             }
+//             leftSum += nums[i];
+//         }
+//         return -1;
+//     }
+// };
+
+
+class Solution {
+public:
+    int pivotIndex(vector<int>& nums) {
+        int n = nums.size();
+
+        int totalSum = 0;
+        for (int i = 0; i < n; i++) {
+            totalSum += nums[i];
         }
-        int leftSum=0;
-        for(int i=0;i<nums.size();i++){
-            rightSum -=nums[i];
-            if(leftSum==rightSum){
+
+        int leftSum = 0;
+
+        for (int i = 0; i < n; i++) {
+            int rightSum = totalSum - leftSum - nums[i];
+
+            if (leftSum == rightSum) {
                 return i;
             }
-            leftSum +=nums[i];
-        }
-        return -1;
 
+            leftSum += nums[i];
+        }
+
+        return -1;
     }
 };
  
