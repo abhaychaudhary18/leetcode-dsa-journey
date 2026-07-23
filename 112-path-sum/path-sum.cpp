@@ -9,15 +9,17 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-
-class Solution{
-    public:
-    bool hasPathSum(TreeNode* root , int targetSum){
-        if(!root) return false;
-        if(!root->left && !root->right){
-            return targetSum -root->val ==0;
+class Solution {
+public:
+    bool hasPathSum(TreeNode* root, int targetSum) {
+        if(root == nullptr)
+        return false;
+        targetSum = targetSum - root->val;
+        if(root->left== nullptr && root->right == nullptr){
+            return targetSum ==0;
         }
-        targetSum -= root->val;
-        return hasPathSum(root->left, targetSum) || hasPathSum(root->right, targetSum);
+        return hasPathSum(root->left, targetSum)||
+        hasPathSum(root->right, targetSum);
+        
     }
 };
